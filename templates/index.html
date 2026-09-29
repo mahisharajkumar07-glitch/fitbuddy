@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% block title %}Create a fitness plan · FitBuddy{% endblock %}
+{% block content %}
+<section class="hero"><p class="eyebrow">YOUR PERSONAL FITNESS COMPANION</p><h1>A plan that fits <em>your life.</em></h1><p>Share a little about yourself and get a practical workout and nutrition guide.</p></section>
+{% if errors %}<div class="alert"><strong>Please check these details:</strong><ul>{% for error in errors %}<li>{{ error }}</li>{% endfor %}</ul></div>{% endif %}
+<form class="card form-grid" method="post" action="/generate">
+  <label>Name<input name="name" required maxlength="120" value="{{ form.get('name','') }}" placeholder="Your name"></label>
+  <label>Age<input name="age" type="number" min="13" max="100" required value="{{ form.get('age','') }}"></label>
+  <label>Gender<input name="gender" required maxlength="40" value="{{ form.get('gender','') }}" placeholder="Optional description"></label>
+  <label>Height (cm)<input name="height" type="number" min="1" max="260" step="0.1" required value="{{ form.get('height','') }}"></label>
+  <label>Weight (kg)<input name="weight" type="number" min="1" max="500" step="0.1" required value="{{ form.get('weight','') }}"></label>
+  <label>Fitness goal<input name="goal" required maxlength="300" value="{{ form.get('goal','') }}" placeholder="e.g. build strength"></label>
+  <label>Experience<select name="experience" required><option value="">Choose one</option>{% for level in ['Beginner','Intermediate','Advanced'] %}<option {% if form.get('experience') == level %}selected{% endif %}>{{ level }}</option>{% endfor %}</select></label>
+  <label>Workout days per week<input name="workout_days" type="number" min="1" max="7" required value="{{ form.get('workout_days','') }}"></label>
+  <label class="wide">Available equipment<input name="equipment" required value="{{ form.get('equipment','') }}" placeholder="Dumbbells, gym, or None"></label>
+  <label class="wide">Dietary preference <span class="muted">(optional)</span><input name="dietary_preference" value="{{ form.get('dietary_preference','') }}" placeholder="Vegetarian, no preference, etc."></label>
+  <label class="wide">Injuries or limitations <span class="muted">(optional)</span><textarea name="limitations" rows="3" placeholder="Anything your plan should account for">{{ form.get('limitations','') }}</textarea></label>
+  <div class="wide"><button type="submit">Generate my fitness plan <span>→</span></button><p class="muted small">Your information is stored locally in the FitBuddy database.</p></div>
+</form>
+{% endblock %}

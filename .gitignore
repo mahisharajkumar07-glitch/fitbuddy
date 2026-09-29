@@ -1,0 +1,11 @@
+venv/
+fitbuddy-env/
+.env
+__pycache__/
+*.py[cod]
+*.db
+*.sqlite
+*.sqlite3
+.vscode/
+.sf/
+*.pyc

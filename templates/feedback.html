@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Adjust your plan · FitBuddy{% endblock %}{% block content %}
+<section class="hero compact"><p class="eyebrow">MAKE IT WORK FOR YOU</p><h1>What should we <em>change?</em></h1><p>Your feedback helps tailor the workout schedule.</p></section>
+<form class="card" method="post" action="/feedback/{{ plan.id }}">{% if error %}<div class="alert">{{ error }}</div>{% endif %}<label>Your feedback<textarea name="feedback_text" required rows="5" placeholder="For example: I have only 30 minutes a day and prefer bodyweight exercises."></textarea></label><p class="muted small">Current plan: <a href="/plan/{{ plan.id }}">view your plan</a></p><button type="submit">Update my workout plan →</button></form>
+{% endblock %}

@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Saved users · FitBuddy{% endblock %}{% block content %}
+<section class="hero compact"><p class="eyebrow">LOCAL ADMIN VIEW</p><h1>Saved <em>profiles.</em></h1><p>Profiles and plans stored in your local SQLite database.</p></section>
+<div class="card table-wrap"><table><thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Goal</th><th>Experience</th><th>Created</th><th>Plan</th></tr></thead><tbody>{% for user in users %}<tr><td>{{ user.id }}</td><td>{{ user.name }}</td><td>{{ user.age }}</td><td>{{ user.goal }}</td><td>{{ user.experience }}</td><td>{{ user.created_at.strftime('%Y-%m-%d') if user.created_at else '—' }}</td><td>{% if user.plans %}<a href="/plan/{{ user.plans[-1].id }}">View plan</a>{% else %}—{% endif %}</td></tr>{% else %}<tr><td colspan="7">No profiles saved yet. <a href="/">Create your first plan</a>.</td></tr>{% endfor %}</tbody></table></div>
+{% endblock %}
